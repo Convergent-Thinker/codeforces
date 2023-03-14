@@ -1,0 +1,50 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+typedef long long ll;
+
+int main()
+{
+    long t;
+    cin >> t;
+    while(t--) {
+        long n;
+        cin >> n;
+        
+        vector<long> a(n);
+        for (long i=0; i<n; i++) {
+            cin >> a[i];
+        }
+/*        
+        for (long l: a) {
+            cout << l << " ";
+        }
+*/        
+        sort(a.begin(), a.end());
+/*        
+        for (long l: a) {
+            cout << l << " ";
+        }
+        cout << endl;
+*/
+        ll smallest_time(0);
+        for (long m=0; m<n; m++) {
+            long prev = (m ? a[m-1] : 0);
+            //cout << prev << " ";
+            if (a[m] > prev + 1) {
+                //cout << a[m] << " ";
+                smallest_time += a[m] - (prev + 1);
+                a[m] = prev + 1;
+            }
+            
+        }
+        
+        cout << smallest_time << endl;
+        
+    }
+
+    return 0;
+}
